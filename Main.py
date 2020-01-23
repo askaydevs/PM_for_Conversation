@@ -31,7 +31,7 @@ if __name__ == '__main__':
     print("Done mining conversations")
 
 
-    xes_exporter.export_log(log, "synthetic_data_processed_logist.xes")
+    xes_exporter.export_log(log, "synthetic_data_processed.xes")
 
 
 
