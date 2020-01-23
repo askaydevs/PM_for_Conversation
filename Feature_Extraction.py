@@ -24,12 +24,13 @@ class DataProcessing:
     def __init__(self):
 
         self.sentiment_analyser = SentimentIntensityAnalyzer()
+        self.df=pd.DataFrame()
 
 
     def load_dict(self, dict, has_class):
 
         """Dict has following structure:
-        {'Thread ID': Str, Posts: {abs_pos(int): {'User id': Str, 'Date': Str, 'Content': Str, 'Class': Str}}
+        {'Thread ID': Str, Posts: {abs_pos(int): {'User id': Str, 'Date': Str, 'Content': Str, 'Tag': Str}}
                     """
 
         self.datadict = dict
@@ -39,10 +40,9 @@ class DataProcessing:
 
         thread_id = self.datadict["Thread ID"]
         initial_post = self.datadict["Posts"][1]['Content']
-        initial_author = self.datadict["Posts"][1]['User id']
+        initial_author = self.datadict["Posts"][1]['User ID']
         entire_thread = self.get_dialogue()
         num_posts = len(self.datadict["Posts"])
-
         for abs_pos in self.datadict["Posts"]:
             # instantiate row for insertion
             #If training data include attribute 'Class' in dict
@@ -50,7 +50,7 @@ class DataProcessing:
                 row_dict = {'IUS': 0, 'DS': 0, '?': 0, 'D': 0, 'What': 0, 'Where': 0,
                             'When': 0, 'Why': 0, 'Who': 0, 'How': 0, 'AP': 0,
                             'NP': 0, 'UL': 0, 'ULU': 0, 'ULSU': 0, 'IS': 0, 'T': 0, '!': 0,
-                            'FB': 0, 'SS(Neu)': 0, 'SS(Pos)': 0, 'SS(Neg)': 0, 'Lex(Pos)': 0, 'Lex(Neg)': 0, 'Class': 0}
+                            'FB': 0, 'SS(Neu)': 0, 'SS(Pos)': 0, 'SS(Neg)': 0, 'Lex(Pos)': 0, 'Lex(Neg)': 0, 'Tag': 0}
             else:
                 row_dict = {'IUS': 0, 'DS': 0, '?': 0, 'D': 0, 'What': 0, 'Where': 0,
                         'When': 0, 'Why': 0, 'Who': 0, 'How': 0, 'AP': 0,
@@ -105,7 +105,7 @@ class DataProcessing:
             row_dict['ULSU'] = self.get_unique_count_stemming(unique_filtered_content)
 
             # IS
-            row_dict['IS'] = initial_author == self.datadict["Posts"][abs_pos]['User id']
+            row_dict['IS'] = initial_author == self.datadict["Posts"][abs_pos]['User ID']
 
             # T
             row_dict['T'] = "thank" in content.lower() or "thanks" in content.lower()
@@ -130,13 +130,13 @@ class DataProcessing:
 
             if self.has_class:
                 # Class
-                row_dict['Class'] = self.datadict["Posts"][abs_pos]['Class']
+                row_dict['Tag'] = self.datadict["Posts"][abs_pos]['Tag']
 
             # Create dataframe from dict
             new_row = pd.DataFrame(row_dict, index=[post_id])
 
-
             self.df = self.df.append(new_row, sort=False)
+
 
     def get_cosine_sim(self, *strs):
         vectors = [t for t in self.get_vectors(*strs)]
@@ -187,6 +187,7 @@ class DataProcessing:
         return score['neu'], score['pos'], score['neg']
 
     def get_clean_dataframe(self):
+        #print(self.df)
         df = self.df.dropna()
 
         return df
@@ -212,7 +213,7 @@ class DataProcessing:
                                         'Where', 'When', 'Why', 'Who', 'How',
                                         'AP', 'NP', 'UL', 'ULU', 'ULSU', 'IS',
                                         'T', '!', 'FB', 'SS(Neu)', 'SS(Pos)', 'SS(Neg)', 'Lex(Pos)', 'Lex(Neg)',
-                                        'Class'])
+                                        'Tag'])
         # load nyc data to dataframe
 
         all_files = [f for f in listdir(folder_name) if isfile(join(folder_name, f))]

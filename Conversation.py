@@ -79,10 +79,10 @@ class Conversation:
         for message_no in self.message_events.keys():
 
             event = {}
-            self.message_events[message_no]["Class"] = predicted_class[int(message_no - 1)]
+            self.message_events[message_no]["Tag"] = predicted_class[int(message_no - 1)]
             event['concept:name'] = self.message_events[message_no]["Class"]
             event["time:timestamp"] = self.message_events[message_no]["Date"]
-            event["org:resource"] = self.message_events[message_no]["User id"]
+            event["org:resource"] = self.message_events[message_no]["User ID"]
             event["keyword"] = max(self.tf_idf.items(), key=operator.itemgetter(1))[0]
 
             log_event = pmlog.Event(event)
@@ -102,8 +102,8 @@ class Conversation:
         convotext = open(filename, append_write)
         for message_no in self.message_events.keys():
             C = self.message_events[message_no]["Content"]
-            U_id = self.message_events[message_no]["User id"]
-            convotext.write("- " + str(U_id) + ": " + str(C) + "  -  " + self.message_events[message_no]["Class"] + "\n")
+            U_id = self.message_events[message_no]["User ID"]
+            convotext.write("- " + str(U_id) + ": " + str(C) + "  -  " + self.message_events[message_no]["Tag"] + "\n")
 
         convotext.write("Keywords: " + str(self.tf_idf.keys()) + "\n")
         convotext.write("-----\n")

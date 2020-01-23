@@ -1,0 +1,10 @@
+id,text,sent,fromUser.username
+1,Does anyone know who offers the most free storage Google or Dropbox?,2020-01-01T23:03:20.182Z,User10
+2,@User10 I believe Google Drive offers the most,2020-01-01T23:03:21.182Z,User11
+3,How do I change my password on my phone?,2020-01-01T23:03:22.182Z,UserX
+4,@UserX What kind of phone do you have?,2020-01-01T23:03:23.182Z,Agent
+5,cool thanks @User11 :),2020-01-01T23:03:24.182Z,User10
+6,@Agent I have an Iphone 3,2020-01-01T23:03:25.182Z,UserX
+7,Youre welcome @User10,2020-01-01T23:03:26.182Z,User11
+8,@UserX you can follow the instructions from this link,2020-01-01T23:31:20.182Z,Agent
+9,It seems like it works @Agent :) Thanks!,2020-01-01T23:35:20.182Z,UserX

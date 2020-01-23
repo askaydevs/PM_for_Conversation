@@ -4,12 +4,12 @@ import Text_Preprocessing as TP
 import math
 
 def Kaggle_IDF(chunksize, stop_datetime, csv_file_path, idf_threshold = 0.0):
-    datetime_object = datetime.strptime("2015-01-01T00:00:00.000Z", '%Y-%m-%dT%H:%M:%S.%fZ')
+    datetime_object = datetime.strptime("2020-01-01T00:00:00.000Z", '%Y-%m-%dT%H:%M:%S.%fZ')
     break_loop = False
     term_unique_occurences = {}
     idf = {}
     document_count = 0
-    cols = ["text", "sent"]
+    cols = ["id","text", "sent","fromUser.username"]
     for chunk in pd.read_csv(csv_file_path, chunksize=chunksize, usecols=cols):
 
         # Terminate after late date, to trim dataset.

@@ -1,0 +1,250 @@
+{
+    "0": {
+        "utterances": [
+            {
+                "id": 0,
+                "utterance_pos": 1,
+                "user_id": "User1",
+                "utterance": "How do I print in python?",
+                "tags": "OQ"
+            },
+            {
+                "id": 1,
+                "utterance_pos": 2,
+                "user_id": "User2",
+                "utterance": "@User1 you can print by typing print(write_here)",
+                "tags": "PA"
+            },
+            {
+                "id": 2,
+                "utterance_pos": 3,
+                "user_id": "User1",
+                "utterance": "@User2 No it is not working.",
+                "tags": "NF"
+            },
+            {
+                  "id": 3,
+                  "utterance_pos": 4,
+                  "user_id": "User2",
+                  "utterance": "What version of python are you using?",
+                  "tags": "IR"
+              },
+            {
+                  "id": 4,
+                  "utterance_pos": 5,
+                  "user_id": "User1",
+                  "utterance": "Im using python3",
+                  "tags": "FD"
+              },
+            {
+                  "id": 5,
+                  "utterance_pos": 6,
+                  "user_id": "User2",
+                  "utterance": "@User1 then it is solved by writing print(write_here)",
+                  "tags": "PA"
+              },
+            {
+                  "id": 6,
+                  "utterance_pos": 7,
+                  "user_id": "User1",
+                  "utterance": "That's working! Thanks @User2",
+                  "tags": "PF"
+              }
+        ]
+    },
+    "1": {
+        "utterances": [
+            {
+                "id": 7,
+                "utterance_pos": 1,
+                "user_id": "User3",
+                "utterance": "hi. How do I install LOL?",
+                "tags": "OQ"
+            },
+            {
+                "id": 8,
+                "utterance_pos": 2,
+                "user_id": "User3",
+                "utterance": "I have tried installing it for days",
+                "tags": "PA"
+            },
+            {
+                "id": 9,
+                "utterance_pos": 3,
+                "user_id": "User4",
+                "utterance": "@User3 I also want to know how to install LOL?",
+                "tags": "NF"
+            },
+            {
+                  "id": 10,
+                  "utterance_pos": 4,
+                  "user_id": "User5",
+                  "utterance": "@User3 what operating system are you using?",
+                  "tags": "IR"
+              },
+            {
+                  "id": 11,
+                  "utterance_pos": 5,
+                  "user_id": "User3",
+                  "utterance": "Im using MacOS",
+                  "tags": "FD"
+              },
+            {
+                  "id": 12,
+                  "utterance_pos": 6,
+                  "user_id": "User5",
+                  "utterance": "@User3 you can find instructions using this link",
+                  "tags": "PA"
+              }
+        ]
+    },
+  "2": {
+        "utterances": [
+            {
+                "id": 7,
+                "utterance_pos": 1,
+                "user_id": "User6",
+                "utterance": "How do I bookmark something in my browser?",
+                "tags": "OQ"
+            },
+            {
+                "id": 8,
+                "utterance_pos": 2,
+                "user_id": "User7",
+                "utterance": "Hi! It depends on the browser. What browser are you using?",
+                "tags": "IR"
+            },
+            {
+                "id": 9,
+                "utterance_pos": 3,
+                "user_id": "User6",
+                "utterance": "Im using Firefox",
+                "tags": "FD"
+            },
+            {
+                  "id": 10,
+                  "utterance_pos": 4,
+                  "user_id": "User7",
+                  "utterance": "Ok. In that case, check out this link",
+                  "tags": "PA"
+              },
+            {
+                  "id": 11,
+                  "utterance_pos": 5,
+                  "user_id": "User6",
+                  "utterance": "Thank you! That works.",
+                  "tags": "GG"
+              }
+        ]
+    },
+  "3": {
+        "utterances": [
+            {
+                "id": 12,
+                "utterance_pos": 1,
+                "user_id": "MGates",
+                "utterance": "When does windows 7 go out of service?",
+                "tags": "OQ"
+            },
+            {
+                "id": 13,
+                "utterance_pos": 2,
+                "user_id": "BGates",
+                "utterance": "It went out of service in January 2020",
+                "tags": "PA"
+            }
+        ]
+    },
+  "4": {
+        "utterances": [
+            {
+                "id": 14,
+                "utterance_pos": 1,
+                "user_id": "SJobs",
+                "utterance": "Hey guys! Does anyone know how to build a trillion dollar company?",
+                "tags": "OQ"
+            },
+            {
+                "id": 15,
+                "utterance_pos": 2,
+                "user_id": "SWozniak",
+                "utterance": "I have the same question",
+                "tags": "RQ"
+            }
+        ]
+    },
+    "5": {
+        "utterances": [
+            {
+                "id": 16,
+                "utterance_pos": 1,
+                "user_id": "User10",
+                "utterance": "Does anyone know who offers the most free storage, Google or Dropbox?",
+                "tags": "OQ"
+            },
+            {
+                "id": 17,
+                "utterance_pos": 2,
+                "user_id": "User11",
+                "utterance": "@User10 I believe Google Drive offers the most",
+                "tags": "PA"
+            },
+            {
+                "id": 18,
+                "utterance_pos": 3,
+                "user_id": "User10",
+                "utterance": "Thank you!",
+                "tags": "GG"
+            },
+          {
+                "id": 19,
+                "utterance_pos": 4,
+                "user_id": "User11",
+                "utterance": "Youre welcome",
+                "tags": "GG"
+            }
+
+        ]
+    },
+  "6": {
+        "utterances": [
+            {
+                "id": 20,
+                "utterance_pos": 1,
+                "user_id": "UserX",
+                "utterance": "Does anyone know how I change my password on my phone?",
+                "tags": "OQ"
+            },
+            {
+                "id": 21,
+                "utterance_pos": 2,
+                "user_id": "Agent",
+                "utterance": "What kind of phone, do you have?",
+                "tags": "IR"
+            },
+            {
+                "id": 22,
+                "utterance_pos": 3,
+                "user_id": "UserX",
+                "utterance": "I have an iPhone 3",
+                "tags": "FD"
+            },
+          {
+                "id": 23,
+                "utterance_pos": 4,
+                "user_id": "Agent",
+                "utterance": "Follow the instructions from this link",
+                "tags": "PA"
+            },
+          {
+                "id": 24,
+                "utterance_pos": 5,
+                "user_id": "UserX",
+                "utterance": "That seems like it is working :) Thanks.",
+                "tags": "PF"
+            }
+
+        ]
+    }
+
+}

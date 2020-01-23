@@ -18,7 +18,7 @@ def mine_conversations(idf, csv_file_path, stop_datetime, chunksize, conversatio
     log = pmlog.EventLog()
     score_stats = []
     message_classifier = Message_Classifier.MessageClassifier()
-    message_classifier.load_models()
+    message_classifier.load_models('synth')
     dataprocess = Feature_Extraction.DataProcessing()
 
     columns = ['id', 'text', 'sent', 'fromUser.username']
@@ -50,12 +50,12 @@ def mine_conversations(idf, csv_file_path, stop_datetime, chunksize, conversatio
 
 
                 event_dict = {}
-                event_dict["User id"] = row["fromUser.username"]
+                event_dict["User ID"] = row["fromUser.username"]
                 event_dict["Date"] = datetime_object
                 event_dict["Content"] = text
                 event_dict["Class"] = None
 
-
+                """
                 for conversation in open_conversations:
                     time_diff = (datetime_object - conversation.open_time).total_seconds() / 60.0
                     if time_diff > conversation_duration:
@@ -67,7 +67,7 @@ def mine_conversations(idf, csv_file_path, stop_datetime, chunksize, conversatio
                                 open_conversations.remove(conversation)
                                 continue
                         open_conversations.remove(conversation)
-
+                """
 
                 # Now we find our text body
                 tf_idf_message = {}
@@ -97,7 +97,7 @@ def mine_conversations(idf, csv_file_path, stop_datetime, chunksize, conversatio
                             score = conversation_score
                             best_matching_conversation = conversation
 
-                    if best_matching_conversation != None and score > 0.05:
+                    if best_matching_conversation != None and score > 0.15:
                         score_stats.append(score)
                         best_matching_conversation.add_message(event_dict, message_text=row['text'],
                                                                person=row['fromUser.username'],

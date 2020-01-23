@@ -32,24 +32,27 @@ class MessageClassifier:
 
 
 
-    def split_data(self):
-
-        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.y, test_size=0.3)
+    def split_data(self,data):
+        y = data.pop('Tag')
+        X = data
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.3)
 
 
 
 
     def load_data_for_training(self, dataframe):
         """Function will split dataframe in x and y and append to training and test set"""
-        self.y_train = dataframe.pop('Class')
+        self.y_train = dataframe.pop('Tag')
         self.X_train = dataframe
 
         #self.split_data()
 
     def load_data_for_test(self, dataframe):
         """Function will split dataframe in x and y and append to training and test set"""
-        self.y_test = dataframe.pop('Class')
+
+        self.y_test = dataframe.pop('Tag')
         self.X_test = dataframe
+
 
         #self.split_data()
 
@@ -86,7 +89,7 @@ class MessageClassifier:
 
     def build_logist(self,X_train, y_train):
         # Build logistic regression with 10-fold CV
-        lr = LogisticRegressionCV(cv=10,max_iter=5000)
+        lr = LogisticRegressionCV(cv=5,max_iter=5000)
         self.logist_model=lr.fit(X_train, y_train)
         self.classifiers.append(("Logist", self.logist_model))
 
@@ -100,29 +103,29 @@ class MessageClassifier:
         print("adaboost trained")
         self.build_logist(X_train,y_train)
         print("logist trained")
-        self.build_rf(X_train,y_train)
-        print("rf trained")
+        #self.build_rf(X_train,y_train)
+        #print("rf trained")
         self.build_nb(X_train, y_train)
         print("nb trained")
-        pickle.dump(self.adaboost_model, open('Model_Files/adaboost_model_msdia.sav', 'wb'))
-        pickle.dump(self.logist_model, open('Model_Files/logist_model_msdia.sav', 'wb'))
-        pickle.dump(self.rf_model, open('Model_Files/rf_model_msdia.sav', 'wb'))
-        pickle.dump(self.nb_model, open('Model_Files/NB_model_msdia.sav', 'wb'))
-
-        self.evaluate_models()
+        pickle.dump(self.adaboost_model, open('Model_Files/adaboost_model_synth.sav', 'wb'))
+        pickle.dump(self.logist_model, open('Model_Files/logist_model_synth.sav', 'wb'))
+        #pickle.dump(self.rf_model, open('Model_Files/rf_model_synth.sav', 'wb'))
+        pickle.dump(self.nb_model, open('Model_Files/NB_model_synth.sav', 'wb'))
 
 
-    def load_models(self):
 
-        self.adaboost_model = pickle.load(open('Model_Files/adaboost_model_msdia.sav', 'rb'))
+
+    def load_models(self,ending):
+
+        self.adaboost_model = pickle.load(open('Model_Files/adaboost_model_' + ending +'.sav', 'rb'))
 
         self.classifiers.append(("Adaboost", self.adaboost_model))
 
 
-        self.logist_model=pickle.load(open('Model_Files/logist_model_msdia.sav', 'rb'))
+        self.logist_model=pickle.load(open('Model_Files/logist_model_' + ending +'.sav', 'rb'))
         self.classifiers.append(('logistic', self.logist_model))
 
-        self.nb_model = pickle.load(open('Model_Files/NB_model_msdia.sav', 'rb'))
+        self.nb_model = pickle.load(open('Model_Files/NB_model_' + ending +'.sav', 'rb'))
         self.classifiers.append(("NB_model.sav", self.logist_model))
 
 
@@ -132,6 +135,7 @@ class MessageClassifier:
         best_score = 0
 
         #eval all models in list
+        print(self.X_test)
 
         for (name,model) in self.classifiers:
             score=model.score(self.X_test,self.y_test)
@@ -141,9 +145,10 @@ class MessageClassifier:
                 self.best_classifier_name = name
                 best_score = score
 
+
     def predict_class(self, dataset):
 
-        classes=[x for x in self.logist_model.predict(dataset)]
+        classes=[x for x in self.adaboost_model.predict(dataset)]
 
         return classes
 
